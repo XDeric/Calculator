@@ -38,17 +38,19 @@ class CustomButton: UIButton {
         }
     }
     
-    func setupBtnConstraints(btns: [UIButton] ){
-        let items = btns
-        items.forEach {$0.translatesAutoresizingMaskIntoConstraints = false}
-        items.forEach{self.addSubview($0)}
+    func setupBtnConstraints(btns: CustomButton, view: UIView){
+//        let items = btns
+//        items.forEach {$0.translatesAutoresizingMaskIntoConstraints = false}
+//        items.forEach{self.addSubview($0)}
+        btns.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(btns)
         
         NSLayoutConstraint.activate([
             
-            centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            topAnchor.constraint(equalTo: self.topAnchor,constant: 5),
-            heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.75),
-            widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8)
+            centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            topAnchor.constraint(equalTo: view.topAnchor,constant: 5),
+            heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.75),
+            widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
         ])
     }
     
