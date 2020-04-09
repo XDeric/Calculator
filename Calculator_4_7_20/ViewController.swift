@@ -24,10 +24,75 @@ class ViewController: UIViewController {
         return button
     }()
     
+    lazy var sub: CustomButton = {
+        let button = CustomButton()
+        button.setupButton(title: "+")
+        button.buttonFunction = {print("test")}
+        return button
+    }()
+    
+    lazy var mult: CustomButton = {
+        let button = CustomButton()
+        button.setupButton(title: "+")
+        button.buttonFunction = {print("test")}
+        return button
+    }()
+    
+    lazy var div: CustomButton = {
+        let button = CustomButton()
+        button.setupButton(title: "+")
+        button.buttonFunction = {print("test")}
+        return button
+    }()
+    
+    lazy var num0: UIButton = {
+        let button = UIButton(type: .system)
+        return button
+    }()
+    
     lazy var num1: UIButton = {
         let button = UIButton(type: .system)
         return button
     }()
+    
+    lazy var num2: UIButton = {
+        let button = UIButton(type: .system)
+        return button
+    }()
+    
+    lazy var num3: UIButton = {
+        let button = UIButton(type: .system)
+        return button
+    }()
+    
+    lazy var num4: UIButton = {
+        let button = UIButton(type: .system)
+        return button
+    }()
+    
+    lazy var num5: UIButton = {
+        let button = UIButton(type: .system)
+        return button
+    }()
+    
+    lazy var num6: UIButton = {
+        let button = UIButton(type: .system)
+        return button
+    }()
+    
+    lazy var num7: UIButton = {
+        let button = UIButton(type: .system)
+        return button
+    }()
+    lazy var num8: UIButton = {
+        let button = UIButton(type: .system)
+        return button
+    }()
+    lazy var num9: UIButton = {
+        let button = UIButton(type: .system)
+        return button
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
