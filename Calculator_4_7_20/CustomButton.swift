@@ -25,7 +25,7 @@ class CustomButton: UIButton {
         backgroundColor = #colorLiteral(red: 0.5807225108, green: 0.066734083, blue: 0, alpha: 1)
         layer.borderWidth = 2.0
         layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        //        titleLabel?.font = UIFont.boldSystemFont(ofSize: fntSize)
+        titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         layer.cornerRadius = 5
         addTarget(self, action: #selector(btnFunc), for: .touchUpInside)
         isEnabled = true

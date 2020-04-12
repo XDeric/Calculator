@@ -18,7 +18,8 @@ class ViewController: UIViewController {
     lazy var txtView: UITextField = {
         let txt = UITextField()
         txt.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-        txt.isEnabled = false
+        txt.delegate = self
+        txt.font = UIFont.boldSystemFont(ofSize: 50)
         return txt
     }()
     
