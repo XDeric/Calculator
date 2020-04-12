@@ -45,59 +45,75 @@ class ViewController: UIViewController {
         return button
     }()
     
-    lazy var num0: UIButton = {
-        let button = UIButton(type: .system)
+    lazy var num0: CustomButton = {
+        let button = CustomButton(type: .system)
         return button
     }()
     
-    lazy var num1: UIButton = {
-        let button = UIButton(type: .system)
+    lazy var num1: CustomButton = {
+        let button = CustomButton(type: .system)
         return button
     }()
     
-    lazy var num2: UIButton = {
-        let button = UIButton(type: .system)
+    lazy var num2: CustomButton = {
+        let button = CustomButton(type: .system)
         return button
     }()
     
-    lazy var num3: UIButton = {
-        let button = UIButton(type: .system)
+    lazy var num3: CustomButton = {
+        let button = CustomButton(type: .system)
         return button
     }()
     
-    lazy var num4: UIButton = {
-        let button = UIButton(type: .system)
+    lazy var num4: CustomButton = {
+        let button = CustomButton(type: .system)
         return button
     }()
     
-    lazy var num5: UIButton = {
-        let button = UIButton(type: .system)
+    lazy var num5: CustomButton = {
+        let button = CustomButton(type: .system)
         return button
     }()
     
-    lazy var num6: UIButton = {
-        let button = UIButton(type: .system)
+    lazy var num6: CustomButton = {
+        let button = CustomButton(type: .system)
         return button
     }()
     
-    lazy var num7: UIButton = {
-        let button = UIButton(type: .system)
+    lazy var num7: CustomButton = {
+        let button = CustomButton(type: .system)
         return button
     }()
-    lazy var num8: UIButton = {
-        let button = UIButton(type: .system)
+    lazy var num8: CustomButton = {
+        let button = CustomButton(type: .system)
         return button
     }()
-    lazy var num9: UIButton = {
-        let button = UIButton(type: .system)
+    lazy var num9: CustomButton = {
+        let button = CustomButton(type: .system)
         return button
     }()
     
+    func setupButtons(){
+        add.setupBtnConstraints(btns: add, view: view)
+        sub.setupBtnConstraints(btns: sub, view: view)
+        mult.setupBtnConstraints(btns: mult, view: view)
+        div.setupBtnConstraints(btns: div, view: view)
+        num0.setupBtnConstraints(btns: num0, view: view)
+        num1.setupBtnConstraints(btns: num1, view: view)
+        num2.setupBtnConstraints(btns: num2, view: view)
+        num3.setupBtnConstraints(btns: num3, view: view)
+        num4.setupBtnConstraints(btns: num4, view: view)
+        num5.setupBtnConstraints(btns: num5, view: view)
+        num6.setupBtnConstraints(btns: num6, view: view)
+        num7.setupBtnConstraints(btns: num7, view: view)
+        num8.setupBtnConstraints(btns: num8, view: view)
+        num9.setupBtnConstraints(btns: num9, view: view)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        add.setupBtnConstraints(btns: add, view: view)
+       setupButtons()
     }
     // Do any additional setup after loading the view.
 }
