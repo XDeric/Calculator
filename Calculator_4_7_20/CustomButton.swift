@@ -23,6 +23,8 @@ class CustomButton: UIButton {
         setTitle(title, for: .normal)
         setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .normal)
         backgroundColor = #colorLiteral(red: 0.5807225108, green: 0.066734083, blue: 0, alpha: 1)
+        layer.borderWidth = 2.0
+        layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         //        titleLabel?.font = UIFont.boldSystemFont(ofSize: fntSize)
         layer.cornerRadius = 5
         addTarget(self, action: #selector(btnFunc), for: .touchUpInside)
@@ -47,10 +49,10 @@ class CustomButton: UIButton {
         
         NSLayoutConstraint.activate([
             
-            centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            topAnchor.constraint(equalTo: view.topAnchor,constant: 5),
-            heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.75),
-            widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
+//            centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            topAnchor.constraint(equalTo: view.topAnchor,constant: 5),
+            heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25),
+            widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2)
         ])
     }
     
