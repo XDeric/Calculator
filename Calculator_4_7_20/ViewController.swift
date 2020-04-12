@@ -201,7 +201,7 @@ extension ViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) != nil {
+        if string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) != nil || string == "" {
           return true
        } else {
           return false
