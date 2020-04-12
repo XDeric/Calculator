@@ -199,5 +199,13 @@ extension ViewController: UITextFieldDelegate {
         searchString = textField.text ?? ""
         return true
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) != nil {
+          return true
+       } else {
+          return false
+       }
+    }
 }
 
