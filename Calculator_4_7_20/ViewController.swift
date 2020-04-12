@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     var searchString = "" {
         didSet{
+            txtView.text = searchString
         }
     }
     
@@ -26,28 +27,28 @@ class ViewController: UIViewController {
     lazy var add: CustomButton = {
         let button = CustomButton()
         button.setupButton(title: "+")
-        button.buttonFunction = {print("test")}
+        button.buttonFunction = {self.searchString += "+"}
         return button
     }()
     
     lazy var sub: CustomButton = {
         let button = CustomButton()
         button.setupButton(title: "-")
-        button.buttonFunction = {print("test")}
+        button.buttonFunction = {self.searchString += "-"}
         return button
     }()
     
     lazy var mult: CustomButton = {
         let button = CustomButton()
         button.setupButton(title: "*")
-        button.buttonFunction = {print("test")}
+        button.buttonFunction = {self.searchString += "*"}
         return button
     }()
     
     lazy var div: CustomButton = {
         let button = CustomButton()
         button.setupButton(title: "/")
-        button.buttonFunction = {print("test")}
+        button.buttonFunction = {self.searchString += "/"}
         return button
     }()
     
@@ -61,65 +62,75 @@ class ViewController: UIViewController {
     lazy var clear: CustomButton = {
         let button = CustomButton(type: .system)
         button.setupButton(title: "AC")
-        button.buttonFunction = {print("test")}
+        button.buttonFunction = {self.searchString = ""}
         return button
     }()
     
     lazy var num0: CustomButton = {
         let button = CustomButton(type: .system)
         button.setupButton(title: "0")
+        button.buttonFunction = {self.searchString += "0"}
         return button
     }()
     
     lazy var num1: CustomButton = {
         let button = CustomButton(type: .system)
         button.setupButton(title: "1")
+        button.buttonFunction = {self.searchString += "1"}
         return button
     }()
     
     lazy var num2: CustomButton = {
         let button = CustomButton(type: .system)
         button.setupButton(title: "2")
+        button.buttonFunction = {self.searchString += "2"}
         return button
     }()
     
     lazy var num3: CustomButton = {
         let button = CustomButton(type: .system)
         button.setupButton(title: "3")
+        button.buttonFunction = {self.searchString += "3"}
         return button
     }()
     
     lazy var num4: CustomButton = {
         let button = CustomButton(type: .system)
         button.setupButton(title: "4")
+        button.buttonFunction = {self.searchString += "4"}
         return button
     }()
     
     lazy var num5: CustomButton = {
         let button = CustomButton(type: .system)
         button.setupButton(title: "5")
+        button.buttonFunction = {self.searchString += "5"}
         return button
     }()
     
     lazy var num6: CustomButton = {
         let button = CustomButton(type: .system)
         button.setupButton(title: "6")
+        button.buttonFunction = {self.searchString += "6"}
         return button
     }()
     
     lazy var num7: CustomButton = {
         let button = CustomButton(type: .system)
         button.setupButton(title: "7")
+        button.buttonFunction = {self.searchString += "7"}
         return button
     }()
     lazy var num8: CustomButton = {
         let button = CustomButton(type: .system)
         button.setupButton(title: "8")
+        button.buttonFunction = {self.searchString += "8"}
         return button
     }()
     lazy var num9: CustomButton = {
         let button = CustomButton(type: .system)
         button.setupButton(title: "9")
+        button.buttonFunction = {self.searchString += "9"}
         return button
     }()
     
@@ -176,6 +187,9 @@ class ViewController: UIViewController {
             
         ])
     }
+    func math(){
+        
+    }
     
     
     //MARK: Life cycle
@@ -201,7 +215,7 @@ extension ViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) != nil || string == "" {
+        if string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) != nil || string == ""  {
           return true
        } else {
           return false
