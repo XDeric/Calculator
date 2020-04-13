@@ -171,23 +171,30 @@ class ViewController: UIViewController {
                     if let text = txtView.text, let value = Int(text) {
                         secondNumber = value
                     }
-
                     switch operation {
                     case .add:
                         let result = prevNum + secondNumber
                         txtView.text = "\(result)"
+                        prevNum = 0
+                        operations = nil
                         
                     case .subtract:
                         let result = prevNum - secondNumber
                         txtView.text = "\(result)"
+                        prevNum = 0
+                        operations = nil
 
                     case .multiply:
                         let result = prevNum * secondNumber
                         txtView.text = "\(result)"
+                        prevNum = 0
+                        operations = nil
 
                     case .divide:
                         let result = prevNum / secondNumber
                         txtView.text = "\(result)"
+                        prevNum = 0
+                        operations = nil
                     }
                 }
             }
