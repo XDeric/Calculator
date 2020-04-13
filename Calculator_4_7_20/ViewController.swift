@@ -10,66 +10,76 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var searchString = "" {
+    enum Operation {
+        case add, subtract, multiply, divide
+    }
+    var prevNum = 0
+    var resultNum = 0
+    var operations: Operation?
+    
+    var searchString = "0" {
         didSet{
             txtView.text = searchString
         }
     }
+    
     
     lazy var txtView: UITextField = {
         let txt = UITextField()
         txt.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
         txt.delegate = self
         txt.font = UIFont.boldSystemFont(ofSize: 50)
+        txt.text = "0"
+        txt.adjustsFontSizeToFitWidth = true
         return txt
     }()
     
     lazy var add: CustomButton = {
         let button = CustomButton()
         button.setupButton(title: "+")
-        button.buttonFunction = {self.searchString += "+"}
+        button.buttonFunction = {self.math(tag: "+")}
         return button
     }()
     
     lazy var sub: CustomButton = {
         let button = CustomButton()
         button.setupButton(title: "-")
-        button.buttonFunction = {self.searchString += "-"}
+        button.buttonFunction = {self.math(tag: "-")}
         return button
     }()
     
     lazy var mult: CustomButton = {
         let button = CustomButton()
         button.setupButton(title: "*")
-        button.buttonFunction = {self.searchString += "*"}
+        button.buttonFunction = {self.math(tag: "*")}
         return button
     }()
     
     lazy var div: CustomButton = {
         let button = CustomButton()
         button.setupButton(title: "/")
-        button.buttonFunction = {self.searchString += "/"}
+        button.buttonFunction = {self.math(tag: "/")}
         return button
     }()
     
     lazy var equal: CustomButton = {
         let button = CustomButton(type: .system)
         button.setupButton(title: "=")
-        button.buttonFunction = {print("test")}
+        button.buttonFunction = {self.math(tag: "=")}
         return button
     }()
     
     lazy var clear: CustomButton = {
         let button = CustomButton(type: .system)
         button.setupButton(title: "AC")
-        button.buttonFunction = {self.searchString = ""}
+        button.buttonFunction = {self.clearNums()}
         return button
     }()
     
     lazy var num0: CustomButton = {
         let button = CustomButton(type: .system)
         button.setupButton(title: "0")
-        button.buttonFunction = {self.searchString += "0"}
+        button.buttonFunction = {self.zeroPressed()}
         return button
     }()
     
@@ -134,6 +144,70 @@ class ViewController: UIViewController {
         return button
     }()
     
+    func clearNums(){
+        self.searchString = "0"
+        operations = nil
+        prevNum = 0
+    }
+    
+    func zeroPressed(){
+        if searchString != "0" {
+            if txtView.text != nil{
+                searchString += "0"
+            }
+        }
+    }
+    
+    func math(tag: String){
+
+            if let text = txtView.text, let value = Int(text), prevNum == 0 {
+                prevNum = value
+                searchString = "0"
+            }
+
+            if tag == "=" {
+                if let operation = operations {
+                    var secondNumber = 0
+                    if let text = txtView.text, let value = Int(text) {
+                        secondNumber = value
+                    }
+
+                    switch operation {
+                    case .add:
+                        let result = prevNum + secondNumber
+                        txtView.text = "\(result)"
+                        
+                    case .subtract:
+                        let result = prevNum - secondNumber
+                        txtView.text = "\(result)"
+
+                    case .multiply:
+                        let result = prevNum * secondNumber
+                        txtView.text = "\(result)"
+
+                    case .divide:
+                        let result = prevNum / secondNumber
+                        txtView.text = "\(result)"
+                    }
+                }
+            }
+            else if tag == "+" {
+                operations = .add
+            }
+            else if tag == "-" {
+                operations = .subtract
+            }
+            else if tag == "*" {
+                operations = .multiply
+            }
+            else if tag == "/" {
+                operations = .divide
+            }
+
+            
+            
+        }
+    
     private func setupTextfield(){
         txtView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(txtView)
@@ -161,34 +235,26 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: txtView.bottomAnchor),
-            //            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
             stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.16),
             
             stackView1.topAnchor.constraint(equalTo: stackView.bottomAnchor),
-            //            stackView1.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             stackView1.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
             stackView1.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.16),
             
             stackView2.topAnchor.constraint(equalTo: stackView1.bottomAnchor),
-            //            stackView2.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             stackView2.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
             stackView2.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.16),
             
             stackView3.topAnchor.constraint(equalTo: stackView2.bottomAnchor),
-            //            stackView3.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             stackView3.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
             stackView3.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.16),
             
             stackView4.topAnchor.constraint(equalTo: stackView3.bottomAnchor),
-            //            stackView3.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             stackView4.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
             stackView4.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.16),
             
         ])
-    }
-    func math(){
-        
     }
     
     
@@ -216,10 +282,10 @@ extension ViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) != nil || string == ""  {
-          return true
-       } else {
-          return false
-       }
+            return true
+        } else {
+            return false
+        }
     }
 }
 
